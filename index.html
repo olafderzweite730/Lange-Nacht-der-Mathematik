@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lange Nacht der Mathematik</title>
+  <meta name="description" content="Aufgaben und Lösungen der Langen Nacht der Mathematik – mit kurzem Lösungsweg.">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>∑</text></svg>">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script defer src="assets/js/main.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <h1>Lange Nacht der Mathematik</h1>
+    <p class="subtitle">Aufgaben, Lösungen &amp; kurze Lösungswege</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <main>
+    <section class="controls">
+      <input type="search" id="search" placeholder="Suche (Aufgabe, Thema, Jahr …)">
+      <select id="filter-thema" aria-label="Nach Thema filtern">
+        <option value="">Alle Themen</option>
+      </select>
+      <label class="toggle">
+        <input type="checkbox" id="filter-geloest">
+        Nur gelöste anzeigen
+      </label>
+    </section>
+
+    <section id="aufgaben-liste" class="grid" aria-live="polite"></section>
+  </main>
+
+  <footer>
+    <p>∑ Mit Liebe zur Mathematik · <span id="jahr"></span></p>
+  </footer>
+</body>
+</html>

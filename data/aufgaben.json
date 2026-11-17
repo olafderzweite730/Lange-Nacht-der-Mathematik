@@ -1,0 +1,26 @@
+[
+  {
+    "nummer": 1,
+    "titel": "",
+    "thema": "",
+    "jahr": "",
+    "aufgabe": "",
+    "kurz": "",
+    "loesungsweg": "",
+    "loesung": "",
+    "notizen": "",
+    "geloest": false
+  },
+  {
+    "nummer": 2,
+    "titel": "",
+    "thema": "",
+    "jahr": "",
+    "aufgabe": "",
+    "kurz": "",
+    "loesungsweg": "",
+    "loesung": "",
+    "notizen": "",
+    "geloest": false
+  }
+]
