@@ -29,6 +29,59 @@
     "aktualisiert": "2026-11-20T16:56:50+0100"
   },
   {
+    "nummer": "2.4",
+    "titel": "Drei Winkelhalbierende",
+    "thema": "Runde 2",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "aufgabe": "Gegeben sei ein Dreieck ∆ABC mit den üblichen Eckenbezeichnungen A, B und C und den Winkelbezeichnungen α, β und γ. Ferner sei bekannt:\n• Die Winkelhalbierende von α schneide BC im Punkt D.\n• Die Winkelhalbierende von β schneide AC im Punkt E.\n• DE ist Winkelhalbierende von ∢CDA.\nWie groß ist der Winkel α?",
+    "kurz": "",
+    "modelle": [
+      {
+        "name": "GPT-5.6 Luna",
+        "antwort": "120",
+        "einig": true
+      },
+      {
+        "name": "Mistral Large 4",
+        "antwort": "120",
+        "einig": true
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "120",
+        "einig": true
+      },
+      {
+        "name": "GPT-5.6 Terra",
+        "antwort": "120",
+        "einig": true
+      },
+      {
+        "name": "GPT-6 Luna",
+        "antwort": "nicht eindeutig",
+        "einig": false
+      },
+      {
+        "name": "GLM-5.3 Flash",
+        "antwort": "120",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3",
+        "antwort": "120",
+        "einig": true
+      }
+    ],
+    "konsens": 6,
+    "status": "geloest",
+    "loesung": "120",
+    "loesungsweg": "1. In $\\triangle ACD$ gilt $\\angle CDA=180^\\circ-\\gamma-\\alpha/2$, also $\\angle CDE=90^\\circ-\\gamma/2-\\alpha/4$.\n2. Da $B,E$ und $D$ wie angegeben liegen, ist $\\angle DBE=\\beta/2$ und $\\angle BDE=180^\\circ-\\angle CDE$.\n3. Folglich $\\angle BED=90^\\circ-\\beta/2-\\gamma/2-\\alpha/4$.\n4. Zugleich $\\angle CEB=180^\\circ-\\gamma-\\beta/2$ und $\\angle CED=90^\\circ-\\gamma/2+\\alpha/4$; daher $\\angle BED=\\angle CEB-\\angle CED=90^\\circ-\\beta/2-\\gamma/2-\\alpha/4$.\n5. Die Bedingung ist somit für jedes passende Dreieck automatisch erfüllt und legt $\\alpha$ nicht eindeutig fest.",
+    "verifiziert": false,
+    "aktualisiert": "2026-11-20T17:15:10+0100"
+  },
+  {
     "nummer": "2.8",
     "titel": "Produkte",
     "thema": "Kombinatorik",

@@ -85,14 +85,16 @@ immer über Python `json.dump`, nie per Texteditor.
 | Modell | ID | Thinking | Gewicht |
 |---|---|---|---|
 | Mistral Large 4 | `mistral/mistral-large-4-0` | xhigh | 1.2 |
-| Magistral Medium | `mistral/magistral-medium-latest` | xhigh | 1.0 |
-| Mistral Medium 3.5 | `mistral/mistral-medium-2604` | xhigh | 1.0 |
-| GLM-5.3 | `mistral/zai-glm-5-3` | max | 1.0 |
 | DeepSeek V4.1 Flash | `mistral/deepseek-v4-1-flash-1017` | max | 1.0 |
-| GPT-5.6 Sol | `codex-lb/gpt-5.6-sol` | xhigh | 1.0 |
+| GLM-5.3 | `mistral/zai-glm-5-3` | max | 1.0 |
+| GLM-5.3 Flash | `mistral/zai-glm-5-3-flash` | max | 1.0 |
+| GPT-5.6 Luna | `codex-lb/gpt-5.6-luna` | xhigh | 1.0 |
 | GPT-5.6 Terra | `codex-lb/gpt-5.6-terra` | xhigh | 1.0 |
 | GPT-6 Luna | `codex-lb/gpt-6-luna` | xhigh | 1.0 |
 
+- `codex-lb` braucht ein angebundenes Konto: Dashboard <http://127.0.0.1:2455/> bzw.
+  `POST /api/accounts/import` (multipart, Feld `auth_json`). `GET /api/accounts` zeigt den Bestand.
+  `gpt-5.6-sol` ist mit normalen ChatGPT-Plänen nicht verfügbar (`model_not_found`) — nicht ins Roster.
 - Health-Probe läuft automatisch vor jedem Solve (10-min-Cache, `.probe.json`, gitignored).
   `codex-lb` fällt sporadisch mit `503 No available accounts` aus → Provider wird übersprungen,
   Mistral rechnet weiter. Nach Ablauf des Caches kommt codex-lb automatisch zurück.
