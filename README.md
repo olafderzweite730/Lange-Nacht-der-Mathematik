@@ -61,6 +61,9 @@ bin/orch/solve.py tasks/r1.json --only 2.3 --models "glm,gpt-5.6"   # gezielt ei
 - `verifikation`: optionales Python-Snippet pro Aufgabe, das den Wert unabhängig berechnet
   (`mpython` mit sympy) — stimmt es überein, wird `verifiziert: true` gesetzt.
 - Antworten früherer Läufe bleiben in `modelle` erhalten; neue Läufe ergänzen/überschreiben sie.
+- Verteilung: `--task-parallel N` löst mehrere Aufgaben gleichzeitig; pro Provider gilt eine
+  Obergrenze aus `providerConcurrency` in `models.json` (Mistral 4, codex-lb 8).
+- Health-Probe vor jedem Lauf (10-min-Cache) entfernt nicht erreichbare Modelle automatisch.
 
 ## Live-Ablauf am Wettbewerbsabend
 

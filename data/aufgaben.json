@@ -1,5 +1,34 @@
 [
   {
+    "nummer": "2.3",
+    "titel": "Doppelfakultät",
+    "thema": "Zahlentheorie",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "aufgabe": "Neben der Fakultät $6!=720$ existiert die Doppelfakultät: $(2k)!!=2k\\cdot 2(k-1)\\cdots 2$ für gerade $n$ und $(2k-1)!!=(2k-1)\\cdot(2k-3)\\cdots 3\\cdot 1$ für ungerade $n$. Wie viele verschiedene Reste erhält man für $n=1,3,5,\\dots$, wenn $n!!$ durch 1000 dividiert wird?",
+    "kurz": "Anzahl verschiedener Reste von n!! modulo 1000",
+    "modelle": [
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "15",
+        "einig": true
+      },
+      {
+        "name": "Mistral Large 4",
+        "antwort": "15",
+        "einig": true
+      }
+    ],
+    "konsens": 2,
+    "status": "geloest",
+    "loesung": "15",
+    "notizen": "",
+    "loesungsweg": "1. Für ungerades $n$ ist $n!!$ ungerade; für $n\\ge 25$ teilt $25!!$ das Produkt $n!!$, und $v_5(25!!)=1+1+2=4$, also $625\\mid n!!$.\n2. Damit ist $n!!\\bmod 1000$ für $n\\ge25$ ein ungerades Vielfaches von $625$, also aus $\\{125,375,625,875\\}$.\n3. Modulo $8$ haben die Produkte für ungerade $n$ das Muster $1,3,7,1$; der Rest $5$ tritt nie auf.\n4. Wegen $625\\equiv1$, $875\\equiv3$, $375\\equiv7$, $125\\equiv5\\pmod8$ bleibt für $n\\ge25$ nur $\\{375,625,875\\}$ übrig.\n5. Alle drei kommen vor: $25!!\\equiv625$, $27!!\\equiv875$, $29!!\\equiv375\\pmod{1000}$.\n6. Für $n=1,3,\\dots,23$ liefert direkte Rechnung die 12 verschiedenen Reste $1,3,15,105,945,395,135,25,425,75,575,225$.\n7. Zusammen sind es $12+3=15$ verschiedene Reste.",
+    "verifiziert": true,
+    "aktualisiert": "2026-11-20T16:56:50+0100"
+  },
+  {
     "nummer": "2.8",
     "titel": "Produkte",
     "thema": "Kombinatorik",
@@ -15,22 +44,12 @@
         "einig": true
       },
       {
-        "name": "GLM-5.3",
-        "antwort": "683",
-        "einig": true
-      },
-      {
-        "name": "Magistral Medium",
-        "antwort": "683",
-        "einig": true
-      },
-      {
         "name": "Mistral Large 4",
         "antwort": "683",
         "einig": true
       },
       {
-        "name": "Mistral Medium 3.5",
+        "name": "GLM-5.3",
         "antwort": "683",
         "einig": true
       },
@@ -38,14 +57,24 @@
         "name": "GPT-5.6 Sol",
         "antwort": "–",
         "einig": false
+      },
+      {
+        "name": "Magistral Medium",
+        "antwort": "683",
+        "einig": true
+      },
+      {
+        "name": "Mistral Medium 3.5",
+        "antwort": "683",
+        "einig": true
       }
     ],
     "konsens": 5,
     "loesung": "683",
-    "loesungsweg": "Jeden Faktor schreiben wir als $2^x5^y$ mit $x,y\\ge 0$ und $x+y>0$; für die drei Faktoren gilt $x_1+x_2+x_3=10$ und $y_1+y_2+y_3=10$. Wir zählen zunächst geordnete Tripel und nutzen die Burnside-Formel für die Permutationsgruppe $S_3$. Ohne Einschränkung gibt es $\\binom{12}{2}^2=66^2=4356$ Tripel. Ein Faktor ist genau dann $1$, wenn sein Paar $(0,0)$ ist; für einen festen solchen Faktor bleiben je $11$ Möglichkeiten für die $x$- und $y$-Summen, also $11^2=121$. Mit Inklusion-Exklusion folgt $4356-3\\cdot121+3=3996$ Tripel ohne Einsen. Fixpunkt eines Tauschs: zwei Faktoren seien gleich $(x,y)$; dann muss $2x+x_3=2y+y_3=10$ gelten. Mit $x,y\\in\\{0,\\dots,5\\}$ gibt es $36$ Möglichkeiten, wobei $(0,0)$ und $(5,5)$ wegen Faktor $1$ entfallen, also $34$ Fixpunkte. Ein 3-Zyklus verlangt $3x=3y=10$, was unmöglich ist. Somit ist die Anzahl $\\frac{3996+3\\cdot34}{6}=\\frac{4098}{6}=683$.",
+    "loesungsweg": "1. $10^{10}=2^{10}5^{10}$; jeder Faktor hat die Form $2^x5^y$ mit $(x,y)\\neq(0,0)$, und die drei Exponentenpaare summieren koordinatenweise zu 10.\n2. Ohne die Bedingung Faktor $>1$ gibt es $\\binom{12}{2}^2=4356$ geordnete Tripel.\n3. Faktoren gleich 1 ausschließen: Ein fester Faktor $(0,0)$ lässt $11^2=121$ Möglichkeiten; Inclusion-Exclusion liefert $4356-3\\cdot121+3=3996$ geordnete zulässige Tripel.\n4. Burnside für die Reihenfolge: Fix unter einer Transposition verlangt $2p+q=(10,10)$ mit $p,q\\neq(0,0)$, also $6^2-2=34$ Möglichkeiten.\n5. Fix unter einem 3-Zyklus verlangt $3p=(10,10)$, was unlösbar ist, also 0.\n6. Anzahl der Bahnen: $(3996+3\\cdot34+2\\cdot0)/6=683$.\n7. Bruteforce-Gegenprobe bestätigt 683.",
     "status": "geloest",
     "verifiziert": true,
-    "aktualisiert": "2026-11-20T16:53:05+0100",
+    "aktualisiert": "2026-11-20T16:56:10+0100",
     "notizen": ""
   }
 ]

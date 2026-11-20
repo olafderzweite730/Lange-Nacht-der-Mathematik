@@ -18,6 +18,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 from fractions import Fraction
 from pathlib import Path
@@ -26,6 +27,18 @@ REPO = Path(__file__).resolve().parents[2]
 CONF = Path(__file__).with_name("models.json")
 
 RETRY_OVERLAY = str(Path(__file__).with_name("omp-retry.yml"))
+PROV_CAP: dict[str, int] = {}
+MERGE_LOCK = threading.Lock()
+_SEMS: dict[str, "object"] = {}
+
+
+def provider_gate(provider: str):
+    """Begrenzt gleichzeitige Aufrufe pro Provider (Rate-Limits)."""
+    cap = PROV_CAP.get(provider, 8)
+    with threading.Lock():
+        if provider not in _SEMS:
+            _SEMS[provider] = threading.Semaphore(max(1, cap))
+    return _SEMS[provider]
 DOWN = {"codex-lb": "No available accounts"}
 
 
@@ -255,18 +268,19 @@ def ask_model(model: dict, task: dict, timeout: int) -> dict:
         prompt,
     ]
     started = time.time()
-    try:
-        proc = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=timeout,
-            cwd=tempfile.gettempdir(), env={**os.environ, "NO_COLOR": "1"},
-        )
-        out = (proc.stdout or "") + "\n" + (proc.stderr or "")
-        parsed = extract_json(out)
-        ok = parsed is not None
-        err = None if ok else (out.strip()[-400:] or f"exit {proc.returncode}")
-        down = provider_down(out)
-    except subprocess.TimeoutExpired:
-        parsed, ok, err, down = None, False, f"timeout nach {timeout}s", None
+    with provider_gate(model["id"].split("/", 1)[0]):
+        try:
+            proc = subprocess.run(
+                cmd, capture_output=True, text=True, timeout=timeout,
+                cwd=tempfile.gettempdir(), env={**os.environ, "NO_COLOR": "1"},
+            )
+            out = (proc.stdout or "") + "\n" + (proc.stderr or "")
+            parsed = extract_json(out)
+            ok = parsed is not None
+            err = None if ok else (out.strip()[-400:] or f"exit {proc.returncode}")
+            down = provider_down(out)
+        except subprocess.TimeoutExpired:
+            parsed, ok, err, down = None, False, f"timeout nach {timeout}s", None
     elapsed = round(time.time() - started, 1)
     return {
         "model": model["id"],
@@ -429,9 +443,19 @@ def run_verification(task: dict, antwort) -> bool | None:
         os.unlink(path)
 
 
+def sort_key(nummer) -> list:
+    return [(0, int(p)) if p.isdigit() else (1, p) for p in re.split(r"(\d+)", str(nummer))]
+
+
 def merge_into_site(task: dict, votum: dict, results: list[dict], dry: bool,
                     verifiziert: bool | None = None) -> None:
     """Schreibt das Votum in data/aufgaben.json und akkumuliert Antworten früherer Läufe."""
+    with MERGE_LOCK:
+        _merge_locked(task, votum, results, dry, verifiziert)
+
+
+def _merge_locked(task: dict, votum: dict, results: list[dict], dry: bool,
+                  verifiziert: bool | None) -> None:
     path = REPO / "data" / "aufgaben.json"
     data = json.loads(path.read_text())
     entry = next((a for a in data if str(a.get("nummer")) == str(task["nummer"])), None)
@@ -486,7 +510,7 @@ def merge_into_site(task: dict, votum: dict, results: list[dict], dry: bool,
     entry["verifiziert"] = bool(verifiziert) if verifiziert is not None else entry.get("verifiziert", False)
     entry["aktualisiert"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
 
-    data.sort(key=lambda a: [int(p) if p.isdigit() else p for p in re.split(r"(\d+)", str(a["nummer"]))])
+    data.sort(key=lambda a: sort_key(a["nummer"]))
     if dry:
         print(f"[dry-run] Aufgabe {task['nummer']} würde geschrieben: {entry['status']}")
         return
@@ -507,9 +531,11 @@ def main() -> int:
     ap.add_argument("--save", help="Rohdaten zusätzlich als JSON speichern")
     ap.add_argument("--probe", action="store_true", help="nur Modell-Erreichbarkeit testen")
     ap.add_argument("--no-probe", action="store_true", help="Health-Probe vor dem Lauf überspringen")
+    ap.add_argument("--task-parallel", type=int, default=1, help="Aufgaben gleichzeitig lösen")
     args = ap.parse_args()
 
     conf = load_conf()
+    PROV_CAP.update({k: int(v) for k, v in conf.get("providerConcurrency", {}).items()})
     roster = conf["roster"]
     if args.models:
         pats = [p.strip() for p in args.models.split(",") if p.strip()]
@@ -547,16 +573,24 @@ def main() -> int:
     if not roster:
         print("Kein Modell erreichbar.", file=sys.stderr)
         return 1
-    out = []
     down: dict[str, str] = {}
-    for task in tasks:
+
+    def bearbeite(task: dict) -> dict:
         res = solve_task(task, roster, timeout, parallel, args.dry_run, down)
-        out.append(res)
         if not args.dry_run and res["votum"]:
-            check = run_verification(task, res["votum"]["gewinner"]["antwort"]) if res["votum"]["gewinner"] else None
-            if check is False and res["votum"]["gewinner"]:
-                res["votum"]["unentschieden"] = True
+            check = None
+            if res["votum"]["gewinner"]:
+                check = run_verification(task, res["votum"]["gewinner"]["antwort"])
+                if check is False:
+                    res["votum"]["unentschieden"] = True
             merge_into_site(task, res["votum"], res["results"], args.dry_run, check)
+        return res
+
+    if args.task_parallel > 1 and len(tasks) > 1:
+        with cf.ThreadPoolExecutor(max_workers=args.task_parallel) as pool:
+            out = list(pool.map(bearbeite, tasks))
+    else:
+        out = [bearbeite(t) for t in tasks]
 
     if args.save:
         Path(args.save).write_text(json.dumps(out, ensure_ascii=False, indent=2))
