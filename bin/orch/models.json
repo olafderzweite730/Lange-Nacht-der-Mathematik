@@ -1,0 +1,14 @@
+{
+  "roster": [
+    { "id": "mistral/mistral-large-4-0", "label": "Mistral Large 4", "thinking": "xhigh", "weight": 1.2 },
+    { "id": "mistral/magistral-medium-latest", "label": "Magistral Medium", "thinking": "xhigh", "weight": 1.0 },
+    { "id": "mistral/mistral-medium-2604", "label": "Mistral Medium 3.5", "thinking": "xhigh", "weight": 1.0 },
+    { "id": "mistral/zai-glm-5-3", "label": "GLM-5.3", "thinking": "max", "weight": 1.0 },
+    { "id": "mistral/deepseek-v4-1-flash-1017", "label": "DeepSeek V4.1 Flash", "thinking": "max", "weight": 1.0 },
+    { "id": "codex-lb/gpt-5.6-sol", "label": "GPT-5.6 Sol", "thinking": "xhigh", "weight": 1.0 },
+    { "id": "codex-lb/gpt-5.6-terra", "label": "GPT-5.6 Terra", "thinking": "xhigh", "weight": 1.0 },
+    { "id": "codex-lb/gpt-6-luna", "label": "GPT-6 Luna", "thinking": "xhigh", "weight": 1.0 }
+  ],
+  "timeoutSec": 900,
+  "parallel": 8
+}

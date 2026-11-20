@@ -1,0 +1,14 @@
+[
+  {
+    "nummer": "2.8",
+    "titel": "Produkte",
+    "thema": "Kombinatorik",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "typ": "N",
+    "kurz": "Faktorisierungen von 10^10 in drei Faktoren",
+    "aufgabe": "Auf wie viele verschiedene Arten kann man die Zahl $10^{10}$ als Produkt dreier natürlicher, von 1 verschiedener Zahlen schreiben? (Die Reihenfolge der Faktoren spielt keine Rolle.)",
+    "verifikation": "cnt = 0\nfor a1 in range(11):\n    for a2 in range(11):\n        for b1 in range(11):\n            for b2 in range(11):\n                c1, c2 = 10 - a1 - b1, 10 - a2 - b2\n                if c1 < 0 or c2 < 0:\n                    continue\n                A, B, C = 2**a1 * 5**a2, 2**b1 * 5**b2, 2**c1 * 5**c2\n                if 1 in (A, B, C):\n                    continue\n                if A <= B <= C:\n                    cnt += 1\nprint(cnt)\n"
+  }
+]

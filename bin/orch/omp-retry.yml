@@ -1,0 +1,3 @@
+retry:
+  maxRetries: 2
+  maxDelayMs: 5000

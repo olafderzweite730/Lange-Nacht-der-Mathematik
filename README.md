@@ -44,6 +44,24 @@ assets/js/aufgabe.js    – Detailansicht + Live-Polling
 KaTeX mit `$…$` (inline) und `$$…$$` (abgesetzt). In JSON Backslashes verdoppeln:
 `"\\frac{a}{b}"`.
 
+## Lösen: Multi-Modell-Orchestrierung
+
+```
+bin/orch/extract.py "<pdf>" --jahr 2026 --runde 1 -o tasks/r1.json   # Blatt → Aufgaben-JSON
+bin/orch/solve.py --probe                                           # Modell-Erreichbarkeit
+bin/orch/solve.py tasks/r1.json --publish                           # lösen, mergen, veröffentlichen
+bin/orch/solve.py tasks/r1.json --only 2.3 --models "glm,gpt-5.6"   # gezielt einzelne Aufgabe/Modelle
+```
+
+- Roster: `bin/orch/models.json` (`mistral/*`, `codex-lb/*`) mit Gewichten und Thinking-Level.
+- Jede Aufgabe läuft unabhängig über alle Modelle (`omp -p`, isolierte Prompts), Antworten müssen
+  striktes JSON liefern; kaputte LaTeX-Escapes werden repariert.
+- Votum: Antworten werden normalisiert (Bruch/Dezimal/LaTeX, sympy-Vergleich), gewichtete Mehrheit
+  entscheidet; Gleichstand → Konfidenz, sonst `status: "unsicher"`.
+- `verifikation`: optionales Python-Snippet pro Aufgabe, das den Wert unabhängig berechnet
+  (`mpython` mit sympy) — stimmt es überein, wird `verifiziert: true` gesetzt.
+- Antworten früherer Läufe bleiben in `modelle` erhalten; neue Läufe ergänzen/überschreiben sie.
+
 ## Live-Ablauf am Wettbewerbsabend
 
 1. Aufgaben aus dem PDF in `data/aufgaben.json` eintragen, `status: "bearbeitet"`, committen, pushen.

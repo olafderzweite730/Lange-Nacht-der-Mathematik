@@ -1,1 +1,46 @@
-[]
+[
+  {
+    "nummer": "2.8",
+    "titel": "Produkte",
+    "thema": "Kombinatorik",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "aufgabe": "Auf wie viele verschiedene Arten kann man die Zahl $10^{10}$ als Produkt dreier natürlicher, von 1 verschiedener Zahlen schreiben? (Die Reihenfolge der Faktoren spielt keine Rolle.)",
+    "kurz": "Faktorisierungen von 10^10 in drei Faktoren",
+    "modelle": [
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "683",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3",
+        "antwort": "683",
+        "einig": true
+      },
+      {
+        "name": "Mistral Large 4",
+        "antwort": "683",
+        "einig": true
+      },
+      {
+        "name": "Magistral Medium",
+        "antwort": "683",
+        "einig": true
+      },
+      {
+        "name": "Mistral Medium 3.5",
+        "antwort": "683",
+        "einig": true
+      }
+    ],
+    "konsens": 5,
+    "loesung": "683",
+    "loesungsweg": "Jeden Faktor schreiben wir als $2^x5^y$ mit $x,y\\ge 0$ und $x+y>0$; für die drei Faktoren gilt $x_1+x_2+x_3=10$ und $y_1+y_2+y_3=10$. Wir zählen zunächst geordnete Tripel und nutzen die Burnside-Formel für die Permutationsgruppe $S_3$. Ohne Einschränkung gibt es $\\binom{12}{2}^2=66^2=4356$ Tripel. Ein Faktor ist genau dann $1$, wenn sein Paar $(0,0)$ ist; für einen festen solchen Faktor bleiben je $11$ Möglichkeiten für die $x$- und $y$-Summen, also $11^2=121$. Mit Inklusion-Exklusion folgt $4356-3\\cdot121+3=3996$ Tripel ohne Einsen. Fixpunkt eines Tauschs: zwei Faktoren seien gleich $(x,y)$; dann muss $2x+x_3=2y+y_3=10$ gelten. Mit $x,y\\in\\{0,\\dots,5\\}$ gibt es $36$ Möglichkeiten, wobei $(0,0)$ und $(5,5)$ wegen Faktor $1$ entfallen, also $34$ Fixpunkte. Ein 3-Zyklus verlangt $3x=3y=10$, was unmöglich ist. Somit ist die Anzahl $\\frac{3996+3\\cdot34}{6}=\\frac{4098}{6}=683$.",
+    "status": "geloest",
+    "verifiziert": true,
+    "aktualisiert": "2026-11-20T16:51:03+0100",
+    "notizen": ""
+  }
+]
