@@ -450,6 +450,9 @@ def merge_into_site(task: dict, votum: dict, results: list[dict], dry: bool,
     for r in results:
         if r["ok"]:
             combined[r["label"]] = {**r, "model": r["label"], "label": r["label"]}
+    for r in results:
+        if not r["ok"] and r["label"] not in combined:
+            combined[r["label"]] = {**r, "model": r["label"], "label": r["label"]}
 
     alle = list(combined.values())
     v = vote(alle) if alle else votum
