@@ -229,12 +229,50 @@
     "typ": "Q",
     "kurz": "",
     "aufgabe": "Das Bild rechts zeigt eine Fliese, mit der die Ebene bedeckt werden kann.\nDie Fliese besitzt 9 Seiten, sechs davon haben die Seitenlänge 1 LE.\nDie Fliese kann in drei kongruente Vierecke zerlegt werden.\nGesucht ist das Quadrat der Maßzahl des Flächeninhalts\neiner Fliese.",
-    "status": "bearbeitet",
-    "modelle": [],
-    "konsens": null,
+    "status": "geloest",
+    "modelle": [
+      {
+        "name": "Mistral Large 4",
+        "antwort": "16/3",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3",
+        "antwort": "16/3",
+        "einig": true
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "16/3",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3 Flash",
+        "antwort": "–",
+        "einig": false
+      },
+      {
+        "name": "GPT-5.6 Luna",
+        "antwort": "–",
+        "einig": false
+      },
+      {
+        "name": "GPT-5.6 Terra",
+        "antwort": "–",
+        "einig": false
+      },
+      {
+        "name": "GPT-6 Luna",
+        "antwort": "nicht bestimmbar",
+        "einig": false
+      }
+    ],
+    "konsens": 3,
     "verifiziert": false,
-    "notizen": "",
-    "aktualisiert": ""
+    "notizen": "Modelle uneinig: nicht bestimmbar (1×) · 16/3 (1×)",
+    "aktualisiert": "2026-11-20T20:15:11+0100",
+    "loesung": "16/3",
+    "loesungsweg": "1. Ein kongruentes Viereck ist ein Trapez mit zwei rechten Winkeln; parallele Seiten $AD=1$ und $BC=x$, schräge Seite $AB=1+x$. 2. Drei Vierecke stoßen im Mittelpunkt zusammen, also $\\angle ABC=120^\\circ$ und damit $\\angle BAD=60^\\circ$. 3. Projektion auf $AD$: $\\cos60^\\circ=\\frac{1-x}{1+x}=\\frac12$, also $x=\\frac13$ und $AB=\\frac43$. 4. Höhe des Trapezes: $h=AB\\sin60^\\circ=\\frac43\\cdot\\frac{\\sqrt3}{2}=\\frac{2\\sqrt3}{3}$; Fläche eines Vierecks: $\\frac12(1+\\frac13)h=\\frac{4\\sqrt3}{9}$. 5. Fliese aus 3 Vierecken: $A=3\\cdot\\frac{4\\sqrt3}{9}=\\frac{4\\sqrt3}{3}$, also $A^2=\\frac{16}{3}$."
   },
   {
     "nummer": "1.6",
@@ -246,12 +284,50 @@
     "typ": "N",
     "kurz": "",
     "aufgabe": "Leila has bought 60 metres of fencing to build a sheepfold, where\na wall constitutes one of the sides. She investigates how long\nthe sides of the sheepfold should be in order to get the largest\npossible area. Leila draws a picture and denotes the width of the\nsheepfold by x m. The length is then (60 −2x) m.\nDetermine the maximum area of the sheepfold. Siehe Anhang.",
-    "status": "bearbeitet",
-    "modelle": [],
-    "konsens": null,
+    "status": "geloest",
+    "modelle": [
+      {
+        "name": "GLM-5.3",
+        "antwort": "450",
+        "einig": true
+      },
+      {
+        "name": "GPT-5.6 Luna",
+        "antwort": "450",
+        "einig": true
+      },
+      {
+        "name": "GPT-5.6 Terra",
+        "antwort": "450",
+        "einig": true
+      },
+      {
+        "name": "GPT-6 Luna",
+        "antwort": "450",
+        "einig": true
+      },
+      {
+        "name": "Mistral Large 4",
+        "antwort": "450",
+        "einig": true
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "450",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3 Flash",
+        "antwort": "450",
+        "einig": true
+      }
+    ],
+    "konsens": 7,
     "verifiziert": false,
     "notizen": "",
-    "aktualisiert": ""
+    "aktualisiert": "2026-11-20T18:56:33+0100",
+    "loesung": "450",
+    "loesungsweg": "1. Die Fläche ist $A(x)=x(60-2x)=60x-2x^2$.\n2. Dies ist eine nach unten geöffnete Parabel; ihr Maximum liegt am Scheitel.\n3. Für $A(x)=-2x^2+60x$ ist die Scheitelstelle $x=-\\frac{60}{2(-2)}=15$.\n4. Dann beträgt die Länge $60-2\\cdot15=30$.\n5. Die maximale Fläche ist $15\\cdot30=450$."
   },
   {
     "nummer": "1.7",
@@ -263,12 +339,35 @@
     "typ": "N",
     "kurz": "",
     "aufgabe": "Aufgabe 1.7: Fries (5)\nEin\nFries\nist\nein\nschmaler\nStreifen,\nder\nzur\nUmgrenzung oder Dekoration von Teilen eines Bauwerks\ndient.\nIn\ndieser\nAufgabe\ngilt\nes\nmit\nFarben\nein\nFriesBand\nherzustellen,\ndas\nden\nfolgenden\nRegeln\nentspricht. Dabei werden die Farben durch Zahlen repräsentiert.\nIm unteren Fries sind Zahlen in jedes Kästchen einzusetzen,\ndie der Diamantregel a · d −b · c = 1 folgen. Diese Diamantregel gilt im gesamten Fries.\nGesucht ist die Summe der Zahlen (in den acht Feldern), die für die Fragezeichen und für a, b, c, d\neinzusetzen sind, damit die Diamantregel erfüllt ist. Siehe Anhang.",
-    "status": "bearbeitet",
-    "modelle": [],
-    "konsens": null,
+    "status": "geloest",
+    "modelle": [
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "25",
+        "einig": true
+      },
+      {
+        "name": "Mistral Large 4",
+        "antwort": "25",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3 Flash",
+        "antwort": "25",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3",
+        "antwort": "–",
+        "einig": false
+      }
+    ],
+    "konsens": 3,
     "verifiziert": false,
     "notizen": "",
-    "aktualisiert": ""
+    "aktualisiert": "2026-11-20T20:15:53+0100",
+    "loesung": "25",
+    "loesungsweg": "1. Reihen von oben 1–7; ungerade Reihen haben 19 Felder (j=0..18), gerade 20 Felder (k=0..19), Randreihen sind 1. 2. Diamantregel: für ungerade r gilt $x_{r+1,j}\\cdot x_{r+1,j+1}-x_{r,j}\\cdot x_{r+2,j}=1$, für gerade r gilt $x_{r+1,k-1}\\cdot x_{r+1,k}-x_{r,k}\\cdot x_{r+2,k}=1$ (k=1..18). 3. Vorgaben: $x_{2,8}=2$, $x_{3,8}=1$, $x_{4,9}=2$, $x_{5,9}=1$, $x_{6,10}=1$, $x_{7,5}=c=1$. 4. Die eindeutig bestimmte positiv-ganzzahlige Lösung liefert für die acht gesuchten Felder $(x_{2,1},x_{3,15},x_{4,3},x_{4,12},a,b,c,d)=(1,7,5,3,1,3,1,4)$. 5. Probe: $a\\cdot d-b\\cdot c=1\\cdot4-3\\cdot1=1$. 6. Summe: $1+7+5+3+1+3+1+4=25$."
   },
   {
     "nummer": "1.8",
@@ -281,11 +380,32 @@
     "kurz": "",
     "aufgabe": "Jedes Rätsel besitzt waagerechte und (von links nach rechts\ngesehen) aufsteigende und absteigende Streifen. Jedes Rätsel hat gleich viele graue und weiße Dreiecke.\nFür jede Figur gilt: In den weißen Feldern kommt jede Zahl\nvon 1 bis n genau einmal vor.\nFür jede Figur gilt: In den grauen Feldern kommt jede Zahl\nvon 1 bis n genau einmal vor.\nFür jeden Streifen gilt: die Summe der Zahlen in den grauen Feldern ist gleich der Summe der Zahlen\nin den weißen Feldern.\nIm Normalfall haben Streifen, die sich schneiden, zwei gemeinsame Felder.\nBei den beiden rechten Rätseln muss die Regel auch für das innere n-Eck (rosa) gelten. Gesucht ist\ndie Summe der einzutragenden Zahlen im obersten waagerechten Streifen und denen im ganz rechten\n(aufsteigenden) Streifen. Dabei werden eventuell einige Zellen doppelt berücksichtigt. Siehe Anhang.\n\n\nKorrekturlesen der Aufgaben oder bei der Korrektur der Einsendungen helfen\nwollen!\nDer zeitliche Aufwand ist überschaubar! Wenn aus jeder Schule pro ca. 30 Gruppen ein Helfer\ngestellt würde, wären alle unsere Probleme gelöst. In diesem Forumspost findet ihr mehr\nInformationen.",
     "status": "bearbeitet",
-    "modelle": [],
-    "konsens": null,
+    "modelle": [
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "–",
+        "einig": false
+      },
+      {
+        "name": "GLM-5.3",
+        "antwort": "–",
+        "einig": false
+      },
+      {
+        "name": "GLM-5.3 Flash",
+        "antwort": "–",
+        "einig": false
+      },
+      {
+        "name": "Mistral Large 4",
+        "antwort": "–",
+        "einig": false
+      }
+    ],
+    "konsens": 0,
     "verifiziert": false,
     "notizen": "",
-    "aktualisiert": ""
+    "aktualisiert": "2026-11-20T19:59:32+0100"
   },
   {
     "nummer": "1.9",
@@ -297,12 +417,35 @@
     "typ": "N",
     "kurz": "",
     "aufgabe": "kdaA soll heißen: keine der vier links angebotenen Antworten ist richtig.\nAlle Antworten sind ohne elektronische Hilfsmittel herzuleiten.\nEinzugeben ist die Summe aller Antwort-Dezimalzahlen (also ohne die kdaA-Anzahlen).\nZahlen in anderen Stellenwertsystemen sind vorher ins Dezimalsystem umzurechnen.\n1. Sei 2025 = ax · by mit den Primzahlen a und b. Gesucht ist a + b + x + y.\n(A) 55\n(B) 61\n(C) 75\n(D) 82\n(E) kdaA\n2. Gesucht ist die Endziffer von 32026.\n(A) 1\n(B) 9\n(C) 7\n(D) 3\n(E) kdaA\n3. A und B seien Ziffern. Gegeben sei AB7 = BA5. Wie lautet diese zweistellige Zahl im Dezimalsystem?\n(A) 17\n(B) 21\n(C) 24\n(D) 25\n(E) kdaA\n4. Welche der folgenden natürlichen Zahlen im Oktalsystem ist durch 7 teilbar?\n(A) 12348\n(B) 23458\n(C) 34568\n(D) 45678\n(E) kdaA\n5. Welches ist der größte Primfaktor von 312 −1?\n(A) 89\n(B) 73\n(C) 59\n(D) 29\n(E) kdaA\n6. Wie viele Paare positiver ganzer Zahlen (x; y) gibt es, die xy + 3x + 5y = 45 erfüllen?\n(A) 3\n(B) 4\n(C) 5\n(D) 6\n(E) kdaA\n7. Wie viele zweistellige natürliche Zahlen gibt es, die genau 12 positive Teiler besitzen?\n(A) 2\n(B) 3\n(C) 4\n(D) 5\n(E) kdaA\n8. Gesucht ist der größte zweistellige Primteiler der Zahl 2 · 4 · 6 · . . . · 100.\n(A) 89\n(B) 73\n(C) 47\n(D) 37\n(E) kdaA\n9. Wie viele dreiziffrige positive ganze Zahlen hinterlassen 3 als Rest, wenn sie durch 5 dividiert\nwerden, und hinterlassen ebenfalls den Rest 3, wenn sie durch 7 dividiert werden?\n(A) 26\n(B) 28\n(C) 29\n(D) 30\n(E) kdaA\n10. Die beiden Lösungen der Gleichung x2 −45x + m = 0 sind Primzahlen. Wie groß ist m?\n(A) 200\n(B) 234\n(C) 126\n(D) 86\n(E) kdaA\n11. Wie viele Paare (x; y) positiver ganzer Zahlen gibt es, deren Quadrate sich um 72 unterscheiden?\n(A) 5\n(B) 6\n(C) 12\n(D) 24\n(E) kdaA\n12. Sei m die Anzahl vierziffriger Palindrome, die Vielfache von 9 sind.\nSei n die Anzahl vierziffriger Palindrome, die Vielfache von 7 sind. m + n =\n(A) 28\n(B) 30\n(C) 32\n(D) 34\n(E) kdaA\n13. Wie viele positive ganze Zahlen d gibt es, die den Rest 11 liefern, wenn 2025 durch d dividiert\nwird?\n(A) 18\n(B) 12\n(C) 6\n(D) 2\n(E) kdaA",
-    "status": "bearbeitet",
-    "modelle": [],
-    "konsens": null,
+    "status": "geloest",
+    "modelle": [
+      {
+        "name": "Mistral Large 4",
+        "antwort": "1487",
+        "einig": false
+      },
+      {
+        "name": "GLM-5.3",
+        "antwort": "1560",
+        "einig": true
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "1642",
+        "einig": false
+      },
+      {
+        "name": "GLM-5.3 Flash",
+        "antwort": "1560",
+        "einig": true
+      }
+    ],
+    "konsens": 2,
     "verifiziert": false,
     "notizen": "",
-    "aktualisiert": ""
+    "aktualisiert": "2026-11-20T20:01:20+0100",
+    "loesung": "1560",
+    "loesungsweg": "1) $2025=3^4\\cdot5^2$, Summe $14$ nicht angeboten $\\Rightarrow$ kdaA. 2) $3^{2026}$: Zyklus der Endziffern 4, $2026\\equiv2\\pmod4\\Rightarrow$ Endziffer $9$. 3) $AB_7=BA_5$: $7A+B=5B+A\\Rightarrow 3A=2B\\Rightarrow A=2,B=3$, Dezimalwert $17$. 4) Im Oktal ist $8\\equiv1\\pmod7$, also Quersumme: nur $2345_8$ mit $2+3+4+5=14\\Rightarrow$ teilbar; dezimal $1253$. 5) $31^2-1=960=2^6\\cdot3\\cdot5$, größter Primfaktor $5\\Rightarrow$ kdaA. 6) $(x+5)(y+3)=60$, $x+5\\in\\{6,10,12,15\\}\\Rightarrow$ 4 Paare. 7) $\\tau(n)=12$ zweistellig: $60,72,84,90,96\\Rightarrow$ 5. 8) $2\\cdot4\\cdots100=2^{50}\\cdot50!$, Primteiler $\\le50$, größter $47$. 9) $n\\equiv3\\pmod{35}$, dreistellig: $35k+3$, $k=3..28\\Rightarrow$ 26. 10) Primzahlsumme $45\\Rightarrow 2+43$, $m=86$. 11) $(x-y)(x+y)=72$, beide gerade: $(2,36),(4,18),(6,12)\\Rightarrow$ 6 geordnete Paare. 12) Palindrom $abba=1001a+110b$: durch 9 wenn $a+b\\equiv0\\pmod9$ $\\Rightarrow m=10$; durch 7 wenn $b\\in\\{0,7\\}$ $\\Rightarrow n=18$; $m+n=28$. 13) $2025\\equiv11\\pmod d\\Rightarrow d\\mid2014=2\\cdot19\\cdot53$ und $d>11$: 6 Teiler. Summe: $17+9+1253+4+5+47+26+86+6+28+6=1487$."
   },
   {
     "nummer": "1.10",
@@ -314,12 +457,35 @@
     "typ": "R(1);R(1);N",
     "kurz": "",
     "aufgabe": "Aufgabe 1.10: Vermischtes (6)\n1. Sandöbron is a bridge crossing the Ångermanälven. The bridge was built in 1943 and was until\n1964 the world’s largest single span concrete bridge.\nThe span of the bridge can be described by the quadratic function h(x) where\nh(x) = −0, 0023x2 + 40.\nh(x) is the height above the water in metres.\nx is the distance in metres along the surface of the water from the middle of the bridge.\na) How high above the water are the cars when they pass the highest point of the bridge?\nb) Calculate the width of the Ångermanälven under the bridge.\n2. In a bay they want to build a rectangular jetty. It will\nconsist of two pieces connected to the shore and a third\npiece that connects the outer edges. (see figure). All\nthe pieces of the jetty are 1.0 metre wide. What is the\nmaximum area of the water surface inside the bridge,\nif the area of the bridge and the enclosed water surface\nis 128 m2? Siehe Anhang.\n\nAnhang\nZu Aufgabe 1.2: Überholen\nIn der Werbung für ein neues Auto heißt es, die Beschleunigung beim Überholen sei bemerkenswert\ngut: Das Auto beschleunige im vierten Gang in 10 Sekunden von 60 km\nh (16, 7 m\ns ) auf 100 km\nh (27, 8 m\ns ).\nAngenommen, die Geschwindigkeit v (in m\ns ) zu verschiedenen Zeitpunkten während des Beschleunigens\nlässt sich durch v(t) = a\n√\nt+ b beschreiben, wobei a und b Konstanten sind und t die Zeit in Sekunden\nist, seit der das Auto beschleunigt.\na) Bestimme die Konstanten a und b.\nb) Wie lang ist nach diesem Modell die Strecke, die für einen Überholvorgang von 10 Sekunden\nbenötigt wird, wenn die Anfangsgeschwindigkeit 60 km\nh beträgt?\nc) Ein solches Auto fährt hinter einem LKW, der mit 60 km\nh\nfährt, und der Fahrer will auf einer\ngeraden Straße mit freier Sicht überholen. Wie lange dauert der Überholvorgang, wenn er wie in\nden Bildern oben abläuft?\n(Einzugeben ist die gesamte Überholzeit in Sekunden.)\n\nZu Aufgabe 1.6: Vermischtes (5)\nLeila hat 60 Meter Zaun gekauft, um einen Schafstall zu bauen, bei dem eine Wand eine der Seiten\nbildet. Sie überlegt, wie lang die Seiten des Schafstalls sein müssen, um die größtmögliche Fläche zu\nerhalten. Leila zeichnet eine Skizze und bezeichnet die Breite des Schafstalls mit x m. Die Länge beträgt dann (60 −2x) m.\nBestimme die maximale Fläche des Schafstalls.\nZu Aufgabe 1.7: Fries (5)\nZu Aufgabe 1.8: Dreimal alles gleich (5)\nDer Anhang kann auch in der jeweiligen Schule beim Kopieren vergrößert werden, außerdem kann er\nan ein Whiteboard projiziert werden.\nZu Aufgabe 1.10: Vermischtes (6)\n(1) Die Sandöbrücke ist eine Brücke über den Ångermanälven. Die Brücke wurde 1943 erbaut und war\nbis 1964 die weltweit größte Einfeld-Betonbrücke.\nDie Spannweite der Brücke lässt sich durch die quadratische Funktion h(x) beschreiben, wobei\nh(x) = −0, 0023x2 + 40.\nh(x) ist die Höhe über dem Wasser in Metern.\nx ist die Entfernung in Metern entlang der Wasseroberfläche von der Mitte der Brücke.\na) Wie hoch über dem Wasser befinden sich die Autos, wenn sie den höchsten Punkt der Brücke passieren?\nb) Berechne die Breite des Ångermanälven unter der Brücke.\n(2) In einer Bucht soll ein rechteckiger Steg gebaut werden. Er besteht aus zwei mit dem Ufer verbundenen Teilen und einem dritten Teil, der die Außenkanten verbindet (siehe Abbildung). Alle Teile\ndes Stegs sind 1,0 Meter breit. Wie groß ist die maximale Wasserfläche innerhalb des Stegs, wenn die\nFläche des Stegs und der umschlossenen Wasserfläche zusammen 128 m² beträgt?",
-    "status": "bearbeitet",
-    "modelle": [],
-    "konsens": null,
+    "status": "geloest",
+    "modelle": [
+      {
+        "name": "Mistral Large 4",
+        "antwort": "40.0;263.8;98",
+        "einig": true
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "40.0;263.8;98",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3",
+        "antwort": "40.0; 263.8; 98",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3 Flash",
+        "antwort": "40.0; 263.8; 98",
+        "einig": true
+      }
+    ],
+    "konsens": 4,
     "verifiziert": false,
     "notizen": "",
-    "aktualisiert": ""
+    "aktualisiert": "2026-11-20T19:34:08+0100",
+    "loesung": "40.0;263.8;98",
+    "loesungsweg": "1) Teil 1a: $h(x)=-0{,}0023x^2+40$ hat den Scheitel bei $x=0$, also $h(0)=40$ → Höhe $40{,}0$ m. 2) Teil 1b: Nullstellen: $-0{,}0023x^2+40=0 \\Rightarrow x^2=\\frac{40}{0{,}0023}\\approx 17391{,}30$, $x\\approx \\pm 131{,}876$; Breite $=2x\\approx 263{,}752\\approx 263{,}8$ m. 3) Teil 2: Äußeres Rechteck $a\\cdot b=128$ (Steg + Wasser). Steg belegt 1 m breite Streifen an drei Seiten, innere Wasserfläche $W=(a-1)(b-2)$ mit $b=128/a$. 4) $W(a)=(a-1)\\left(\\frac{128}{a}-2\\right)=130-2a-\\frac{128}{a}$. 5) $W'(a)=-2+\\frac{128}{a^2}=0 \\Rightarrow a^2=64 \\Rightarrow a=8$, $b=16$. 6) $W_{max}=(8-1)(16-2)=7\\cdot 14=98$ m² (Probe: Stegfläche $2\\cdot8+16-2=30$, $98+30=128$ ✓)."
   },
   {
     "nummer": "2.3",
