@@ -3,39 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lange Nacht der Mathematik</title>
-  <meta name="description" content="Aufgaben und Lösungen der Langen Nacht der Mathematik – mit kurzem Lösungsweg.">
+  <title>Lange Nacht der Mathematik – Lösungen live</title>
+  <meta name="description" content="Aufgaben, Ergebnisse und Lösungswege der Langen Nacht der Mathematik – live aktualisiert.">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>∑</text></svg>">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script defer src="assets/js/common.js"></script>
   <script defer src="assets/js/main.js"></script>
 </head>
 <body>
-  <header class="hero">
-    <h1>Lange Nacht der Mathematik</h1>
-    <p class="subtitle">Aufgaben, Lösungen &amp; kurze Lösungswege</p>
-    <div class="stats" id="stats"></div>
+  <div class="topbar">
+    <div class="wrap topbar-in">
+      <span class="brand"><span class="brand-mark">∑</span>lnm<span class="brand-sep">/</span>loesungen</span>
+      <span class="live" id="live" hidden><span class="dot"></span><span id="live-zeit">–</span></span>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <div class="wrap">
+      <p class="kicker">// Wettbewerb <span id="jahr"></span> · Runde 1 &amp; 2</p>
+      <h1>Lösungen der Nacht</h1>
+      <p class="subtitle">Aufgaben, Ergebnisse und Lösungswege — live aus dem Wettbewerb.</p>
+      <div class="progress" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="stats" id="stats"></div>
+    </div>
   </header>
 
-  <main>
+  <main class="wrap">
     <section class="controls">
-      <input type="search" id="search" placeholder="Suche (Aufgabe, Thema, Jahr …)">
+      <input type="search" id="search" placeholder="Suchen: Aufgabe, Thema, Nummer …" aria-label="Aufgaben durchsuchen">
       <select id="filter-thema" aria-label="Nach Thema filtern">
-        <option value="">Alle Themen</option>
+        <option value="">Thema: alle</option>
       </select>
-      <label class="toggle">
-        <input type="checkbox" id="filter-geloest">
-        Nur gelöste anzeigen
-      </label>
+      <select id="filter-status" aria-label="Nach Status filtern">
+        <option value="">Status: alle</option>
+        <option value="offen">offen</option>
+        <option value="bearbeitet">wird gelöst</option>
+        <option value="geloest">gelöst</option>
+        <option value="unsicher">unsicher</option>
+      </select>
     </section>
 
     <section id="aufgaben-liste" class="grid" aria-live="polite"></section>
   </main>
 
   <footer>
-    <p>∑ Mit Liebe zur Mathematik · <span id="jahr"></span></p>
+    <div class="wrap">∑ Lange Nacht der Mathematik · <a href="https://github.com/olafderzweite730/Lange-Nacht-der-Mathematik">Quelle auf GitHub</a></div>
   </footer>
 </body>
 </html>

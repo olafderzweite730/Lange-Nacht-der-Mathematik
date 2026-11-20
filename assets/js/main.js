@@ -1,90 +1,115 @@
 "use strict";
 
-const DATA_URL = "data/aufgaben.json";
+const POLL_MS = 20000;
 
-function esc(s) {
-  return String(s ?? "").replace(/[&<>"']/g, c => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-  })[c]);
-}
-
-function renderMath(el) {
-  if (window.renderMathInElement) {
-    renderMathInElement(el, {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },
-        { left: "$", right: "$", display: false },
-        { left: "\\[", right: "\\]", display: true },
-        { left: "\\(", right: "\\)", display: false }
-      ]
-    });
-  }
-}
-
-async function ladeAufgaben() {
-  const res = await fetch(DATA_URL, { cache: "no-cache" });
-  if (!res.ok) throw new Error("aufgaben.json konnte nicht geladen werden");
-  return res.json();
+function signatur(a) {
+  return JSON.stringify([a.status, a.geloest, a.loesung, a.loesungsweg, a.aktualisiert]);
 }
 
 function initIndex() {
   const liste = document.getElementById("aufgaben-liste");
   const stats = document.getElementById("stats");
+  const progressFill = document.getElementById("progress-fill");
+  const live = document.getElementById("live");
+  const liveZeit = document.getElementById("live-zeit");
   const search = document.getElementById("search");
   const themaSel = document.getElementById("filter-thema");
-  const geloestChk = document.getElementById("filter-geloest");
+  const statusSel = document.getElementById("filter-status");
   document.getElementById("jahr").textContent = new Date().getFullYear();
 
-  ladeAufgaben().then(aufgaben => {
+  let aufgaben = [];
+  const bekannt = new Map();      // nummer -> Signatur
+  const frisch = new Set();       // nummern, die sich gerade geändert haben
+
+  function baueThemen() {
     const themen = [...new Set(aufgaben.map(a => a.thema).filter(Boolean))].sort();
-    themen.forEach(t => {
-      const opt = document.createElement("option");
-      opt.value = t; opt.textContent = t;
-      themaSel.appendChild(opt);
+    const aktuell = themaSel.value;
+    themaSel.innerHTML = `<option value="">Alle Themen</option>` +
+      themen.map(t => `<option value="${LNM.esc(t)}">${LNM.esc(t)}</option>`).join("");
+    themaSel.value = themen.includes(aktuell) ? aktuell : "";
+  }
+
+  function zeichne() {
+    const q = search.value.trim().toLowerCase();
+    const thema = themaSel.value;
+    const status = statusSel.value;
+
+    const sichtbar = aufgaben.filter(a => {
+      if (thema && a.thema !== thema) return false;
+      if (status && LNM.statusOf(a) !== status) return false;
+      if (!q) return true;
+      const hay = `${a.nummer} ${a.titel} ${a.thema} ${a.jahr} ${a.runde} ${a.kurz}`.toLowerCase();
+      return hay.includes(q);
     });
 
-    const geloestCount = aufgaben.filter(a => a.geloest).length;
-
-    function aktualisiere() {
-      const q = search.value.trim().toLowerCase();
-      const thema = themaSel.value;
-      const nurGeloest = geloestChk.checked;
-      const sichtbar = aufgaben.filter(a => {
-        if (thema && a.thema !== thema) return false;
-        if (nurGeloest && !a.geloest) return false;
-        if (!q) return true;
-        const heu = `${a.nummer} ${a.titel} ${a.thema} ${a.jahr} ${a.kurz}`.toLowerCase();
-        return heu.includes(q);
-      });
-
-      liste.innerHTML = sichtbar.length === 0
-        ? `<p class="subtitle">Keine Aufgaben gefunden.</p>`
-        : sichtbar.map(a => `
-          <a class="card${a.geloest ? " geloest" : ""}" href="aufgabe.html?nr=${encodeURIComponent(a.nummer)}">
+    liste.innerHTML = aufgaben.length === 0
+      ? `<p class="empfaenger">Noch keine Aufgaben hinterlegt – sobald die Blätter eintreffen, erscheinen sie hier automatisch.</p>`
+      : sichtbar.length === 0
+      ? `<p class="empfaenger">Keine Aufgaben passen zu Filter/Suche.</p>`
+      : sichtbar.map(a => {
+          const st = LNM.statusOf(a);
+          const neu = frisch.has(String(a.nummer));
+          return `
+          <a class="card ${st}${neu ? " frisch" : ""}" href="aufgabe.html?nr=${encodeURIComponent(a.nummer)}">
             <div class="card-top">
-              <span class="card-nr">Aufgabe ${esc(a.nummer)}</span>
-              <span class="badge${a.geloest ? " geloest" : ""}">${a.geloest ? "✓ gelöst" : "offen"}</span>
+              <span class="card-nr">Aufgabe ${LNM.esc(a.nummer)}</span>
+              ${LNM.badge(a)}
             </div>
-            <p class="card-titel">${esc(a.titel || "(noch ohne Titel)")}</p>
-            <span class="card-thema">${esc(a.thema || "")}${a.jahr ? " · " + esc(a.jahr) : ""}</span>
-            <p class="card-kurz">${esc(a.kurz || "")}</p>
-          </a>`).join("");
-      renderMath(liste);
+            <p class="card-titel">${LNM.esc(a.titel || "(noch ohne Titel)")}</p>
+            <span class="card-thema">${LNM.esc(a.thema || "")}${a.runde ? " · Runde " + LNM.esc(a.runde) : ""}</span>
+            ${a.loesung ? `<p class="card-ergebnis">${a.loesung}</p>` : ""}
+            <p class="card-kurz">${LNM.esc(a.kurz || "")}</p>
+            ${neu ? `<span class="neu-tag">✦ aktualisiert</span>` : ""}
+          </a>`;
+        }).join("");
+    LNM.renderMath(liste);
+  }
 
-      stats.innerHTML = `
-        <div class="stat-box"><div class="zahl">${aufgaben.length}</div><div class="label">Aufgaben</div></div>
-        <div class="stat-box"><div class="zahl">${geloestCount}</div><div class="label">gelöst</div></div>
-        <div class="stat-box"><div class="zahl">${aufgaben.length - geloestCount}</div><div class="label">offen</div></div>`;
+  function zeichneStats() {
+    const n = aufgaben.length;
+    const geloest = aufgaben.filter(a => LNM.statusOf(a) === "geloest").length;
+    const arbeit = aufgaben.filter(a => LNM.statusOf(a) === "bearbeitet").length;
+    stats.innerHTML = `
+      <div class="stat-box"><div class="zahl">${n}</div><div class="label">aufgaben</div></div>
+      <div class="stat-box"><div class="zahl ok">${geloest}</div><div class="label">gelöst</div></div>
+      <div class="stat-box"><div class="zahl warn">${arbeit}</div><div class="label">in arbeit</div></div>
+      <div class="stat-box"><div class="zahl">${n - geloest - arbeit}</div><div class="label">offen</div></div>`;
+    progressFill.style.width = n ? `${(geloest / n) * 100}%` : "0%";
+  }
+
+  function uebernehme(neu) {
+    const listeNeu = LNM.sortiert(neu);
+    frisch.clear();
+    for (const a of listeNeu) {
+      const id = String(a.nummer);
+      const vorher = bekannt.get(id);
+      if (vorher !== undefined && vorher !== signatur(a)) frisch.add(id);
+      bekannt.set(id, signatur(a));
     }
+    aufgaben = listeNeu;
+    baueThemen();
+    zeichneStats();
+    zeichne();
+    if (frisch.size) setTimeout(() => { frisch.clear(); zeichne(); }, 8000);
+  }
 
-    [search, themaSel, geloestChk].forEach(el => el.addEventListener("input", aktualisiere));
-    aktualisiere();
-  }).catch(err => {
-    liste.innerHTML = `<p class="subtitle">Fehler: ${esc(err.message)}</p>`;
-  });
+  async function aktualisiere() {
+    try {
+      const neu = await LNM.ladeAufgaben();
+      live.hidden = false;
+      liveZeit.textContent = "aktualisiert " + new Date().toLocaleTimeString("de-DE");
+      uebernehme(neu);
+    } catch (err) {
+      liste.innerHTML = `<p class="empfaenger">Fehler: ${LNM.esc(err.message)}</p>`;
+    }
+  }
+
+  [search, themaSel, statusSel].forEach(el => el.addEventListener("input", zeichne));
+  aktualisiere();
+  setInterval(() => { if (!document.hidden) aktualisiere(); }, POLL_MS);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) aktualisiere(); });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   if (document.getElementById("aufgaben-liste")) initIndex();
-  window.__renderMath = renderMath;
 });

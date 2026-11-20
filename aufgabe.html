@@ -5,26 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aufgabe – Lange Nacht der Mathematik</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>∑</text></svg>">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script defer src="assets/js/common.js"></script>
   <script defer src="assets/js/aufgabe.js"></script>
 </head>
-<body>
-  <nav class="topnav">
-    <a href="index.html">← Übersicht</a>
-    <div class="nav-pager">
-      <a href="#" id="prev-link">← Vorherige</a>
-      <a href="#" id="next-link">Nächste →</a>
+<body class="detail">
+  <div class="topbar">
+    <div class="wrap topbar-in">
+      <a class="brand" href="index.html"><span class="brand-mark">∑</span>lnm<span class="brand-sep">/</span><span id="nav-titel">aufgaben</span></a>
+      <span class="live" id="live"><span class="dot"></span><span id="live-zeit">–</span></span>
     </div>
-  </nav>
+  </div>
 
-  <main id="content" class="aufgabe-seite" aria-live="polite">
+  <main class="wrap aufgabe-seite" id="content" aria-live="polite">
     <noscript>Diese Seite benötigt JavaScript.</noscript>
   </main>
 
   <footer>
-    <p>∑ Mit Liebe zur Mathematik</p>
+    <div class="wrap">∑ Lange Nacht der Mathematik · <a href="https://github.com/olafderzweite730/Lange-Nacht-der-Mathematik">Quelle auf GitHub</a></div>
   </footer>
 </body>
 </html>

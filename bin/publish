@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Validiert data/aufgaben.json und veröffentlicht die Seite.
+# Nutzung: bin/publish "Commit-Nachricht"
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+python3 - <<'EOF'
+import json, sys
+d = json.load(open("data/aufgaben.json"))
+assert isinstance(d, list), "aufgaben.json muss eine Liste sein"
+seen = set()
+for a in d:
+    assert "nummer" in a, f"Eintrag ohne nummer: {a}"
+    n = str(a["nummer"])
+    assert n not in seen, f"doppelte nummer: {n}"
+    seen.add(n)
+    st = a.get("status") or ("geloest" if a.get("geloest") else "offen")
+    assert st in {"offen", "bearbeitet", "geloest", "unsicher"}, f"Aufgabe {n}: unbekannter Status {st}"
+print(f"OK: {len(d)} Aufgaben")
+EOF
+
+msg="${1:-update: Loesungen}"
+git add -A
+git diff --cached --quiet && { echo "Nichts zu committen."; exit 0; }
+git commit -q -m "$msg"
+git push -q origin HEAD
+echo "Publiziert: $msg"
