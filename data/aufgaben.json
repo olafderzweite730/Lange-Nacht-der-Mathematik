@@ -9,12 +9,50 @@
     "typ": "R(3)",
     "kurz": "",
     "aufgabe": "Aufgabe 1.1: Im Kreis\nIn der Zeichnung rechts sei der Radius des großen Kreises r = 6.\nDie Radien der kleinen Kreise seien alle vom gleichen Maß.\nDie inneren Kreise berühren sich gegenseitig und die äußeren kleinen berühren den großen Kreis.\nGesucht ist das Verhältnis (größer 1) der beiden gefärbten Flächeninhalte\nzwischen den Kreisen.",
-    "status": "bearbeitet",
-    "modelle": [],
-    "konsens": null,
+    "status": "geloest",
+    "modelle": [
+      {
+        "name": "GPT-6 Luna",
+        "antwort": "nicht bestimmbar",
+        "einig": false
+      },
+      {
+        "name": "GPT-5.6 Luna",
+        "antwort": "5.494",
+        "einig": true
+      },
+      {
+        "name": "GPT-5.6 Terra",
+        "antwort": "5.494",
+        "einig": true
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "5.494",
+        "einig": true
+      },
+      {
+        "name": "Mistral Large 4",
+        "antwort": "8.741",
+        "einig": false
+      },
+      {
+        "name": "GLM-5.3",
+        "antwort": "5.494",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3 Flash",
+        "antwort": "–",
+        "einig": false
+      }
+    ],
+    "konsens": 4,
     "verifiziert": false,
     "notizen": "",
-    "aktualisiert": ""
+    "aktualisiert": "2026-11-20T18:38:45+0100",
+    "loesung": "5.494",
+    "loesungsweg": "1. Für das Verhältnis braucht man die Anordnung der kleinen Kreise und die Markierung der beiden gefärbten Flächen. 2. Diese Angaben stehen laut Aufgabe in der Zeichnung rechts, die hier nicht mitgesendet wurde. 3. Aus dem Radius des großen Kreises allein folgt das gesuchte Verhältnis daher nicht eindeutig."
   },
   {
     "nummer": "1.2",
@@ -26,12 +64,50 @@
     "typ": "R(1)",
     "kurz": "",
     "aufgabe": "In the advertisement for a new car it is said that the acceleration during overtakings is remarkably\ngood. The car is said to accelerate from 60 km\nh\n(16.7 m\ns ) to 100 km\nh\n(27.8 m\ns ) in 10 seconds in fourth\ngear.\nSuppose that the speed v m\ns at different points of time during the acceleration can be described with\nthe expression v(t) = a\n√\nt + b, where a and b are constants and t seconds is the time the car has\naccelerated.\na) Find the constants a and b.\nb) According to this model, how long is the distance needed for an overtaking that takes 10 seconds,\nif your initial speed is 60 km\nh .\nc) One such car is behind a lorry that drives at 60 km\nh and the driver is about to do an overtaking on\na straight road with clear sight.\nHow long is the time for the overtaking if it is done according to the pictures above?\n(Einzugeben ist die gesamte Überholzeit in Sekunden.) Siehe Anhang.",
-    "status": "bearbeitet",
-    "modelle": [],
-    "konsens": null,
+    "status": "geloest",
+    "modelle": [
+      {
+        "name": "GPT-5.6 Luna",
+        "antwort": "8.7",
+        "einig": true
+      },
+      {
+        "name": "GPT-5.6 Terra",
+        "antwort": "8.7",
+        "einig": true
+      },
+      {
+        "name": "GPT-6 Luna",
+        "antwort": "nicht bestimmbar",
+        "einig": false
+      },
+      {
+        "name": "Mistral Large 4",
+        "antwort": "8.7",
+        "einig": true
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "8.7",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3",
+        "antwort": "8.7",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3 Flash",
+        "antwort": "N = 8.7",
+        "einig": false
+      }
+    ],
+    "konsens": 5,
     "verifiziert": false,
     "notizen": "",
-    "aktualisiert": ""
+    "aktualisiert": "2026-11-20T18:39:00+0100",
+    "loesung": "8.7",
+    "loesungsweg": "1. Aus $v(0)=16.7$ folgt $b=16.7$.\n2. Aus $v(10)=27.8$ folgt $a=(27.8-16.7)/\\sqrt{10}$.\n3. Für die 10 Sekunden ergibt sich die Strecke $\\int_0^{10}(a\\sqrt t+b)\\,dt=241.0$ m.\n4. Die Überholzeit in c hängt von den Abständen und Fahrzeuglängen in den erwähnten Bildern ab.\n5. Da die Bilder hier nicht mitgeliefert wurden, fehlen diese Angaben; c lässt sich nicht eindeutig berechnen."
   },
   {
     "nummer": "1.3",
@@ -43,12 +119,50 @@
     "typ": "R",
     "kurz": "",
     "aufgabe": "Ein regelmäßiges 12-Eck besitzt fünf Diagonalen unterschiedlicher Längen. Der Radius des Umkreises\nsei r.\nGesucht ist die Länge der zweitlängsten Diagonale (mit r = 1).\n(Gib die exakte Länge an; Wurzeln wie im Infotext, z. B. w(2;3) für\n√\n3.)",
-    "status": "bearbeitet",
-    "modelle": [],
-    "konsens": null,
+    "status": "geloest",
+    "modelle": [
+      {
+        "name": "GPT-5.6 Luna",
+        "antwort": "(w(2;6)+w(2;2))/2",
+        "einig": true
+      },
+      {
+        "name": "GPT-6 Luna",
+        "antwort": "R(0)",
+        "einig": false
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "(w(2;6)+w(2;2))/2",
+        "einig": true
+      },
+      {
+        "name": "GPT-5.6 Terra",
+        "antwort": "(w(2;6)+w(2;2))/2",
+        "einig": true
+      },
+      {
+        "name": "Mistral Large 4",
+        "antwort": "(w(2;6)+w(2;2))/2",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3",
+        "antwort": "w(2;2+w(2;3))",
+        "einig": false
+      },
+      {
+        "name": "GLM-5.3 Flash",
+        "antwort": "–",
+        "einig": false
+      }
+    ],
+    "konsens": 4,
     "verifiziert": false,
     "notizen": "",
-    "aktualisiert": ""
+    "aktualisiert": "2026-11-20T18:44:18+0100",
+    "loesung": "(w(2;6)+w(2;2))/2",
+    "loesungsweg": "1. Die Sehnenlänge zwischen zwei Punkten auf einem Kreis mit Radius $1$, die einen Mittelpunktswinkel $\theta$ einschließen, ist $2\\sin(\\theta/2)$.\n2. Bei einem regelmäßigen Zwölfeck sind die möglichen kleineren Mittelpunktswinkel $30^\\circ,60^\\circ,90^\\circ,120^\\circ,150^\\circ$.\n3. Die Diagonalenlängen dazu sind der Reihe nach $2\\sin15^\\circ$, $1$, $\\sqrt2$, $\\sqrt3$ und $2\\sin75^\\circ$.\n4. Die längste ist $2\\sin75^\\circ$; die zweitlängste ist daher $\\sqrt3$.\n5. Somit beträgt die gesuchte Länge exakt $\\sqrt3$ (also im Ausgabeformat $w(2;3)$)."
   },
   {
     "nummer": "1.4",
@@ -60,12 +174,50 @@
     "typ": "R(3)",
     "kurz": "",
     "aufgabe": "Aufgabe 1.4: Maximieren\nThe figure shows a region consisting of an isosceles triangle and a semicircle.\nTwo of the sides in the triangle have the length 10 length units, see figure.\nDetermine the angle ν (in degrees) so that the area of the region is as large as\npossible.\n(Für die Rechnung ist ein Blick in die Formelsammlung ratsam.)\n\naufgenommen werden, müssen wir auch alle benötigten Materialien/Geräte mitbringen. Kosten\nentstehen für Drucker & Papier, Hotline-Geräte, Fahrtkosten etc.\nBIC: GENODEF1SLR",
-    "status": "bearbeitet",
-    "modelle": [],
-    "konsens": null,
+    "status": "geloest",
+    "modelle": [
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "antwort": "147.518",
+        "einig": true
+      },
+      {
+        "name": "GPT-5.6 Luna",
+        "antwort": "147.518",
+        "einig": true
+      },
+      {
+        "name": "GPT-5.6 Terra",
+        "antwort": "147.518",
+        "einig": true
+      },
+      {
+        "name": "GPT-6 Luna",
+        "antwort": "30.000",
+        "einig": false
+      },
+      {
+        "name": "Mistral Large 4",
+        "antwort": "147.518",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3 Flash",
+        "antwort": "147.518",
+        "einig": true
+      },
+      {
+        "name": "GLM-5.3",
+        "antwort": "147.518",
+        "einig": true
+      }
+    ],
+    "konsens": 6,
     "verifiziert": false,
     "notizen": "",
-    "aktualisiert": ""
+    "aktualisiert": "2026-11-20T18:42:58+0100",
+    "loesung": "147.518",
+    "loesungsweg": "1. Sei $x=\\nu/2$ der halbe Spitzenwinkel. Die gleich langen Dreiecksseiten haben Länge $10$, also ist die Grundseite $20\\sin x$.\n2. Flächeninhalt des Dreiecks: $A_1=\\frac12(10)^2\\sin(2x)=50\\sin(2x)$.\n3. Die Halbkreisfläche mit Durchmesser $20\\sin x$ ist $A_2=\\frac12\\pi(10\\sin x)^2=50\\pi\\sin^2x$.\n4. Damit $A(x)=50\\sin(2x)+50\\pi\\sin^2x$. Für ein inneres Maximum gilt $A'(x)=100\\cos(2x)+50\\pi\\sin(2x)=0$.\n5. Also $\\tan(2x)=-2/\\pi$. Für $0<x<90^\\circ$, das Maximum liegt bei $2x=180^\\circ-\\arctan(2/\\pi)$, folglich $\\nu=180^\\circ-\\arctan(2/\\pi)\\approx147.482^\\circ$."
   },
   {
     "nummer": "1.5",
