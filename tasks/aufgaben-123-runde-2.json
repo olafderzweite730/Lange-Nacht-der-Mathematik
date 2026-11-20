@@ -1,0 +1,112 @@
+[
+  {
+    "nummer": "2.1",
+    "titel": "Pythagäisches 3-4-5-Dreieck im Quadrat",
+    "thema": "Runde 2",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "typ": "Q",
+    "kurz": "",
+    "aufgabe": "1. Zeichne |AB| = c = 5 cm und den dazugehörigen Umkreis: Wähle einen Punkt D auf der Peripherie des Kreises (D̸ ∈{A, B}) und konstruiere ein dazugehöriges\nQuadrat mit der Seite |AD|. Der Punkt D wandert nun\nsolange auf der Peripherie, bis der Punkt C aus der zweiten Bedingung ebenfalls auf einer Quadratseite auf der\ngegenüberliegenden Seite von c zu liegen kommt.\n2. Zeichne den Kreis k2 mit einem Radius von 3 cm um B\nund erhalte C als auch das rechtwinklige Dreieck ∆ABC\nmit dem Seitenverhältnis 3 : 4 : 5.\nGesucht ist q2 der Quadratseitenlänge q, für die beide Bedingungen erfüllt sind."
+  },
+  {
+    "nummer": "2.2",
+    "titel": "3 kongruente Ellipsen",
+    "thema": "Runde 2",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "typ": "R(3)",
+    "kurz": "",
+    "aufgabe": "Three congruent ellipses are mutually tangent.\nTheir major axes are parallel. Two of the ellipses are tangent at the\nend points of their minor axes as shown.\nThe distance between the centers of these two ellipses is 4.\nThe distances from those two centers to the center of the third ellipse\nare both 14.\nGesucht ist die Maßzahl des zwischen den Ellipsen eingeschlossenen Flächeninhalts.\n\nKorrekturlesen der Aufgaben oder bei der Korrektur der Einsendungen helfen\nwollen!\nDer Zeitliche Aufwand ist überschaubar! Wenn aus jede Schule pro ca. 30 Gruppen einen Helfer\nstellen würde wären alle unsere Probleme gelöst. In diesem Forumspost findet ihr mehr\nInformationen."
+  },
+  {
+    "nummer": "2.3",
+    "titel": "Doppelfakultät",
+    "thema": "Runde 2",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "typ": "N",
+    "kurz": "",
+    "aufgabe": "Aufgabe 2.3: Doppelfakultät\nNeben der Fakultät z.B. 6! = 6 · 5 · 4 · 3 · 2 · 1 = 720 existiert auch die Doppelfakultät:\nn!! =\n\u001a falls n gerade: (2k)!! = 2k · 2(k −1) · 2(k −2) · . . . · 2\nfalls n ungerade: (2k −1)!! = (2k −1) · (2k −3) · (2k −5) · . . . · 1\nFür eine ungerade Zahl n, schreiben wir also n!! = n · (n −2) . . . · 3 · 1.\nWie viele verschiedene Reste erhält man für n = 1, 3, 5, . . ., wenn n!! durch 1000 dividiert wird?"
+  },
+  {
+    "nummer": "2.4",
+    "titel": "Drei Winkelhalbierende",
+    "thema": "Runde 2",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "typ": "N",
+    "kurz": "",
+    "aufgabe": "Gegeben sei ein Dreieck ∆ABC mit den üblichen Eckenbezeichnungen A, B und C und den Winkelbezeichnungen α, β und γ. Ferner sei bekannt:\n• Die Winkelhalbierende von α schneide BC im Punkt D.\n• Die Winkelhalbierende von β schneide AC im Punkt E.\n• DE ist Winkelhalbierende von ∢CDA.\nWie groß ist der Winkel α?"
+  },
+  {
+    "nummer": "2.5",
+    "titel": "Drohnen und ihre Überwachung",
+    "thema": "Runde 2",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "typ": "Q;Q",
+    "kurz": "",
+    "aufgabe": "Die Ortung einer Drohne findet im räumlichen System statt.\nUm aber einen Einblick in die dazu nötige Mathematik zu bekommen,\nverlagern wir in unserem Modell das Problem in die Zweidimensionalität:\n(x + 3)2 + (y −0, 5)2 = 3609\n100\n(1)\n(x −5)2 + (y −6)2 = 776\n25\n(2)\n(x −8)2 + (y + 4)2 = 1201\n25\n(3)\nsind Kreise (Ellipsen), die leider nicht so schön in Ursprungslage liegen\n- deswegen sind die Gleichungen auch gegeben.\nDer Schnittpunkt zweier liefert noch zwei mögliche Standorte; erst mit\ndem dritten liegt der Ort fest.\nGesucht ist der gemeinsame Schnittpunkt (x; y) der drei Kreise.\n(Zur Lösung und für den Zugang zur Runde 3 muss auch ein schriftlicher Lösungsweg ohne Hilfe eines\nRechners vorliegen.)"
+  },
+  {
+    "nummer": "2.6",
+    "titel": "Folge von Kreisen (1)",
+    "thema": "Runde 2",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "typ": "R(1);R(1)",
+    "kurz": "",
+    "aufgabe": "Aufgabe 2.6: Folge von Kreisen (1)\nErste Version:\nIn einen Kreis werden „unendlich“ viele kleinere Kreise senkrecht übereinander gestapelt, wie in der\nZeichnung zu sehen.\nDie Radien eines Kreises zum nächst-kleineren verhalten sich wie 3 : 2.\nZweite Version:\nWie in der Zeichnung angedeutet sind „unendlich viele“ - immer kleiner werdende - grüne Kreise übereinander gestapelt. Die Radien jeweils aufeinanderfolgender grüner Kreise verhalten sich wie 3 : 2.\n(Dabei bleibt offen, ob der Stapel vollständig in den weißen Kreis hineinpasst.)\nNun soll in einem Gedankenexperiment der Flächeninhalt aller grünen Kreise (Farbe) in den anfänglichen weißen Kreis von unten nach oben gefüllt werden, sodass ein Kreisabschnitt entsteht. Dabei\nentsteht eine Sehne und gesucht ist der zugehörige Winkel.\n(Eine entsprechende Formel findet man in einer Formelsammlung und die Schachtelung kann mit einer Tabellenkalkulation bewerkstelligt werden. Bitte beachtet dabei, dass in einer Formel eventuell\nverschiedene Winkeleinheiten verlangt werden.)\nGesucht ist der Prozentanteil des grünen Flächeninhalts am gesamten Kreis und der angesprochene\nWinkel (in Grad)."
+  },
+  {
+    "nummer": "2.7",
+    "titel": "Geteilte Fibancci-Zahlen",
+    "thema": "Runde 2",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "typ": "R",
+    "kurz": "",
+    "aufgabe": "Sei Fn die n-te Fibonacci-Zahl. Ermittle\n∞\nX\nn=1\nFn\n2n ,\nwobei F16 = 987 gelten möge."
+  },
+  {
+    "nummer": "2.8",
+    "titel": "Produkte",
+    "thema": "Runde 2",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "typ": "N",
+    "kurz": "",
+    "aufgabe": "Aufgabe 2.8: Produkte\nAuf wie viele verschiedene Arten kann man die Zahl 101010 als Produkt dreier natürlicher - von 1\nverschiedener - Zahlen schreiben?\n(Bei der Herleitung soll die Reihenfolge der Faktoren keine Rolle spielen.)"
+  },
+  {
+    "nummer": "2.9",
+    "titel": "Begrenzte Stellen?",
+    "thema": "Runde 2",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "typ": "N;N;N",
+    "kurz": "",
+    "aufgabe": "16807 = 75 wird 5-Zahl genannt, weil sie fünfziffrig ist und eine 5er-Potenz.\nFür die Zahl 42 = 16 gilt: 16 ist eine 2-Zahl, weil sie zweiziffrig ist und ein Quadrat (Zweierpotenz).\nWie viele n-Zahlen gibt es und wie lautet die größte?\n(Für die größte Zahl kann auch Basis und Exponent angegeben werden; dann entfällt die Angabe der\ndritten natürlichen Zahl.)\n\naufgenommen werden, müssen wir auch alle benötigten Materialien/Geräte mitbringen. Kosten\nentstehen für Drucker & Papier, Hotline-Geräte, Fahrtkosten etc."
+  },
+  {
+    "nummer": "2.10",
+    "titel": "Gleichungssystem",
+    "thema": "Runde 2",
+    "jahr": "2023",
+    "runde": "2",
+    "stufe": "11–13",
+    "typ": "Q;N",
+    "kurz": "",
+    "aufgabe": "Es seien x, y, z reelle Zahlen ungleich Null und es sei das folgende Gleichungssystem gegeben:\na = 50x2 + 9y2 + 5z2 + 6xy + 30xz + 6yz\n(4)\nb = 25x2 + 41y2 + 5z2 + 40xy + 20xz + 26yz\n(5)\nc = 35x2 + 15y2 + 5z2 + 33xy + 25xz + 16yz\n(6)\nGesucht sind alle möglichen Werte für x\ny , für die c2 = ab gilt."
+  }
+]

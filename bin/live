@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+"""Ein-Befehl-Pipeline: PDF → Aufgaben auf der Website → Multi-Modell-Lösungen → Publish.
+
+    bin/live "<pdf>" --jahr 2026 --runde 1 --stufe "11-13"
+    bin/live "<pdf>" --only 1.3 --models "glm,gpt-5.6" --no-publish
+
+Schritte:
+  1. PDF → tasks/<slug>.json (bin/orch/extract.py)
+  2. alle Aufgaben als status "bearbeitet" in data/aufgaben.json + Publish (Live-Fortschritt)
+  3. bin/orch/solve.py (Multi-Modell, Votum, Verifikation) mit --publish
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[1]
+ORCH = REPO / "bin" / "orch"
+
+
+def run(cmd: list[str]) -> None:
+    print("$", " ".join(cmd), flush=True)
+    subprocess.run(cmd, check=True)
+
+
+def slugify(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("pdf")
+    ap.add_argument("--jahr", default=str(time.localtime().tm_year))
+    ap.add_argument("--runde", default="")
+    ap.add_argument("--stufe", default="")
+    ap.add_argument("--thema", default="")
+    ap.add_argument("--only", help="nur diese Aufgabennummern lösen (Komma-getrennt)")
+    ap.add_argument("--models", help="Modellfilter für solve.py")
+    ap.add_argument("--task-parallel", type=int, default=2)
+    ap.add_argument("--timeout", type=int, default=900)
+    ap.add_argument("--dry-run", action="store_true", help="nur extrahieren und Plan zeigen")
+    ap.add_argument("--no-publish", action="store_true", help="nichts committen/pushen")
+    args = ap.parse_args()
+
+    pdf = Path(args.pdf)
+    if not pdf.exists():
+        print(f"PDF nicht gefunden: {pdf}", file=sys.stderr)
+        return 1
+
+    tasks_path = REPO / "tasks" / f"{slugify(pdf.stem)}.json"
+    tasks_path.parent.mkdir(exist_ok=True)
+
+    extract = [sys.executable, str(ORCH / "extract.py"), str(pdf),
+               "--jahr", args.jahr, "--runde", args.runde, "--stufe", args.stufe,
+               "-o", str(tasks_path)]
+    run(extract)
+
+    tasks = json.loads(tasks_path.read_text())
+    for t in tasks:
+        if args.thema and not t.get("thema"):
+            t["thema"] = args.thema
+    tasks_path.write_text(json.dumps(tasks, ensure_ascii=False, indent=2) + "\n")
+    print(f"{len(tasks)} Aufgaben: " + ", ".join(t["nummer"] for t in tasks))
+
+    # 2. Sofort als "bearbeitet" veröffentlichen → Live-Seite zeigt Fortschritt
+    data_path = REPO / "data" / "aufgaben.json"
+    data = json.loads(data_path.read_text())
+    neu = 0
+    for t in tasks:
+        entry = next((a for a in data if str(a.get("nummer")) == str(t["nummer"])), None)
+        if entry is None:
+            data.append({**t, "status": "bearbeitet", "modelle": [], "konsens": None,
+                         "verifiziert": False, "notizen": "", "aktualisiert": ""})
+            neu += 1
+        elif entry.get("status") in (None, "", "offen"):
+            entry["status"] = "bearbeitet"
+            neu += 1
+    data.sort(key=lambda a: [(0, int(p)) if p.isdigit() else (1, p) for p in re.split(r"(\d+)", str(a["nummer"]))])
+
+    if args.dry_run:
+        print(f"[dry-run] {neu} Aufgabe(n) würden als 'bearbeitet' markiert; Lösen übersprungen.")
+        return 0
+
+    if neu:
+        data_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+        if not args.no_publish:
+            run([str(REPO / "bin" / "publish"), f"update: Blatt eingetragen ({pdf.stem})"])
+        print(f"{neu} Aufgabe(n) als 'bearbeitet' veröffentlicht.")
+
+    # 3. Lösen
+    solve = [sys.executable, str(ORCH / "solve.py"), str(tasks_path),
+             "--task-parallel", str(args.task_parallel), "--timeout", str(args.timeout)]
+    if args.only:
+        solve += ["--only", args.only]
+    if args.models:
+        solve += ["--models", args.models]
+    if not args.no_publish:
+        solve.append("--publish")
+    run(solve)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

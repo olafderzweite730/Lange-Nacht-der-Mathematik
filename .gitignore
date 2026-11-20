@@ -1,2 +1,4 @@
 bin/orch/.probe.json
 tasks/*.local.json
+__pycache__/
+*.pyc
